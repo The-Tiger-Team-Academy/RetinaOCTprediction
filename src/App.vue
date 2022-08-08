@@ -2,12 +2,16 @@
 import { ref } from '@vue/reactivity'
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import Calendar from './components/Calendar.vue';
+import Form from './components/Form.vue';
 
 export default {
   name:"Home",
   components: {
     HelloWorld,
+    Calendar,
+    Form,
   },
   setup() {
     let dropzoneFile = ref("");
@@ -27,6 +31,7 @@ export default {
 <HelloWorld @drop.prevent="drop"/>
   <span class="file-info">File: {{dropzoneFile.name}}</span>
   </div>
+  <Form/>
 </template>
 
 <style lang="scss" scoped>
