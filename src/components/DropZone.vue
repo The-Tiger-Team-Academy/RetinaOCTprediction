@@ -1,34 +1,84 @@
 <template>
+
+  <!-- <div class="container-sm">
+    <div
+      class="imagePreviewWrapper"
+      :style="{ 'background-image': `url(${previewImage})` }"
+      @click="selectImage">
+    </div>
+ 
+    <input
+      ref="fileInput"
+      type="file"
+      @input="pickFile">
+  </div> -->
+
 <div class="container">
-	   <div>
+	<div class="row">
+	  <div class="imagePreviewWrapper"
+      :style="{ 'background-image': `url(${previewImage})` }"
+      @click="selectImage">
 	      <form method="post" action="#" id="#">
-           <div class="form-group files color">
+           <div class="form-group files">
                 <label>Upload Your File </label>
-                <input type="file" class="form-control" multiple="">
+                <input type="file" class="form-control" multiple="" ref="fileInput" @input="pickFile">
               </div>
               </form>
-	    </div>
+	      </div>
+  </div>
 </div>
-
   
 </template>
 
-<script>
-import { ref } from "vue";
-
-
+<script >
 export default {
-    name:"Dropzone"
-}
+    name:"Dropzone",
+    data() {
+      return {
+        previewImage: null
+      };
+    },
+  methods: {
+      selectImage () {
+          this.$refs.fileInput.click()
+      },
+      pickFile () {
+        let input = this.$refs.fileInput
+        let file = input.files
+        if (file && file[0]) {
+          let reader = new FileReader
+          reader.onload = e => {
+            this.previewImage = e.target.result
+          }
+          reader.readAsDataURL(file[0])
+          this.$emit('input', file[0])
+        }
+      }
+  }
+    }
+
+
+
 </script>
 
-<style>
+<style scoped lang="scss">
+
+.imagePreviewWrapper {
+    width: 700px;
+    height: 350px;
+    display: block;
+    cursor: pointer;
+    margin: 0 auto 30px;
+    background-size: cover;
+    background-position: center center;
+}
+
 .files input {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 200px 0px 100px 35%;
+    padding: 120px 0px 85px 35%;
     text-align: center !important;
     margin: 0;
     width: 100% !important;

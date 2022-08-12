@@ -19,7 +19,10 @@ export default {
 
   //   return {dropzoneFile, drop };
   // }
+  
 }
+
+
 
 
 </script>
