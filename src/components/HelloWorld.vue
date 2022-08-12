@@ -12,10 +12,13 @@ export default {
 
         return { active, toggleActive };
     },
+
 };
+
 </script>
 
 <template>
+<div>
   <div
     @dragenter.prevent="toggleActive"
     @dragleave.prevent="toggleActive"
@@ -27,7 +30,10 @@ export default {
     <span>Drag or Drop File</span>
     <span>OR</span>
     <label for="dropzoneFile">Select File</label>
-    <input type="file" id="dropzoneFile" />
+    <input type="file" id="dropzoneFile">
+    <img id="blah" src="#" alt="your image" width="200"/>
+  
+  </div>
   </div>
 </template>
 
