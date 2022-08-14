@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="background-color:#def8f6">    
+  <div class="hello" style="background-color:#def8f6; padding-top: 20px;">    
     <picture-input 
       ref="pictureInput"
       width="700" 
@@ -10,7 +10,7 @@
       button-class="btn"
       :custom-strings="{
         upload: '<h1>Bummer!</h1>',
-        drag: 'Drag a ? GIF or GTFO'
+        drag: 'Drag & Drop'
       }"
       @change="onChange">
     </picture-input>
@@ -20,7 +20,7 @@
 <script>
 import PictureInput from 'vue-picture-input'
 export default {
-name: 'Preview',
+  name: 'app',
   data () {
     return {
     }
@@ -43,5 +43,7 @@ name: 'Preview',
 </script>
 
 <style>
-
+.picture-input{
+    width: 50% !important;
+}
 </style>
