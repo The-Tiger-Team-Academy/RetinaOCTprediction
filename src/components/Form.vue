@@ -1,25 +1,25 @@
 <template>
   <body style="background-color: #def8f6">
     <div class="container">
-      <div class="hello" style="padding-top: 20px">
-      </div>
+      <div class="hello" style="padding-top: 20px"></div>
 
-      <div class="hello" style="background-color:#def8f6; padding-top: 20px;">    
-    <picture-input 
-      ref="pictureInput"
-      width="700" 
-      height="350" 
-      margin="16" 
-      accept="image/jpeg,image/png" 
-      size="10" 
-      button-class="btn"
-      :custom-strings="{
-        upload: '<h1>Bummer!</h1>',
-        drag: 'Drag & Drop'
-      }"
-      @change="onChange">
-    </picture-input>
-  </div>
+      <div class="hello" style="background-color: #def8f6; padding-top: 20px">
+        <picture-input
+          ref="pictureInput"
+          width="700"
+          height="350"
+          margin="16"
+          accept="image/jpeg,image/png"
+          size="10"
+          button-class="btn"
+          :custom-strings="{
+            upload: '<h1>Bummer!</h1>',
+            drag: 'Drag & Drop',
+          }"
+          @change="onChange"
+        >
+        </picture-input>
+      </div>
 
       <div class="mt-4 d-grid gap-5">
         <!-- form -->
@@ -30,7 +30,7 @@
             id="name"
             placeholder="Name :"
             name="name"
-            style="border-color:#fdfdfd;"
+            style="border-color: #fdfdfd"
           />
         </div>
 
@@ -41,100 +41,81 @@
           <option value="RIGHT">RIGHT</option>
         </select>
 
-        
         <!-- datepicker -->
-          <div>
-            <Datepicker lang="en" position="right"/>
-          </div>
-
-      </div>
-        <!-- button -->
-        <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
-          <button type="button" class="btn btn-default">CLEAR</button>
-
-          <button  class="btn btn-primary" @click="upload">
-            PREDICT
-          </button>
+        <div>
+          <Datepicker lang="en" position="right" />
         </div>
-      
+      </div>
+      <!-- button -->
+      <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
+        <button type="button" class="btn btn-default" @click="clear">
+          CLEAR
+        </button>
+
+        <button class="btn btn-primary" @click="upload">PREDICT</button>
+      </div>
     </div>
   </body>
 </template>
 
 <script>
-
-import 'vue-datepicker-ui/lib/vuedatepickerui.css';
-import VueDatepickerUi from 'vue-datepicker-ui';
+import "vue-datepicker-ui/lib/vuedatepickerui.css";
+import VueDatepickerUi from "vue-datepicker-ui";
 import axios from "axios";
-import PictureInput from 'vue-picture-input';
+import PictureInput from "vue-picture-input";
 
 export default {
   name: "Form",
   components: { Datepicker: VueDatepickerUi, PictureInput },
   setup() {
-
-    function upload(){
-      let formData = new Formdata()
-      formData.append('image', images)
+    function upload(image) {
       let imageController = axios.create({
-        baseURL: 'http://127.0.0.1/api/uploads'
-      })
-      console.log(images)
-      
-              
-        return new Promise(async (resolve, reject) => {
+        baseURL: "http://127.0.0.1/api/",
+      });
+
+      let formData = new FormData();
+      formData.append("image", image);
+      console.log("upload");
+
+      return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post(
-            formData,
-          )
-          resolve(res.data)
-        } catch(e){
-          reject(e.response.data)
+          const res = await imageController.post('uploads',formData);
+          console.log(res);
+          resolve(res);
+        } catch (e) {
+          reject(e);
         }
-      })
-      };
-    function upload()
-            {
-                  let name,email,psw;
-                  name=document.getElementById("username").value;
-                  email=document.getElementById("eyeside").value;
-                  psw=document.getElementById("date").value;
+      });
+    }
 
-                  localStorage.setItem("name",name)
-                  localStorage.setItem("eyeside",email)
-                  localStorage.setItem("date",psw)
-                
+    function clear() {
+      localStorage.clear();
+    }
 
-                  };
-      function clearitem() {
-        localStorage.clear();
-      }
-
-  return {
+    return {
       date: null,
       upload,
+      clear,
     };
-    
-},
+  },
   data() {
     return {
-      date: {}, dateGreg:{}
+      date: {},
+      dateGreg: {},
     };
   },
   methods: {
-    onChange (image) {
-      console.log('New picture selected!')
+    onChange(image) {
+      console.log("New picture selected!");
       if (image) {
-        console.log('Picture loaded.')
-        this.image = image
+        this.upload(image);
+        console.log("Picture loaded.");
       } else {
-        console.log('FileReader API not supported: use the <form>, Luke!')
+        console.log("FileReader API not supported: use the <form>, Luke!");
       }
-    }
-  }
-}
-
-
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -170,5 +151,4 @@ option[value=""][disabled] {
 option {
   color: black;
 }
-
 </style>
