@@ -34,6 +34,9 @@ export default {
       if (image) {
         console.log('Picture loaded.')
         this.image = image
+        localStorage.setItem('image', this.image);
+        
+
       } else {
         console.log('FileReader API not supported: use the <form>, Luke!')
       }

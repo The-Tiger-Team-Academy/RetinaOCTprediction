@@ -35,7 +35,9 @@
         <!-- button -->
         <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
           <button type="button" class="btn btn-default">CLEAR</button>
-          <button  class="btn btn-primary">
+
+
+          <button  class="btn btn-primary" @click="upload">
             PREDICT
           </button>
         </div>
@@ -47,17 +49,48 @@
 <script>
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import axios from "axios";
 
 export default {
   name: "Form",
   components: { Datepicker },
-  data() {
+  setup() {
+
+    function upload(){
+      let formData = new FormData()
+      formData.append('image', images)
+      let imageController = axios.create({
+          baseURL: 'http://127.0.0.1/api/uploads'
+      })
+     console.log(images)
+
+      
+    return new Promise(async (resolve, reject) => {
+        try {
+            const res = await imageController.post(
+                formData,
+            )
+            resolve(res.data)
+        } catch(e) {
+            reject(e.response.data)
+        }
+    })
+
+    }
+
+    
+
+
     return {
       date: null,
+      upload
+
     };
   },
 
 }
+
+
 </script>
 
 <style scoped lang="scss">
