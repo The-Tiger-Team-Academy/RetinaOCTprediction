@@ -1,10 +1,12 @@
 <template >
   <body style="background-color: #def8f6">
-    <div class="container d-flex justify-content-center" style="background-color: #def8f6; align-content: center;">
+    <div
+      class="container d-flex justify-content-center"
+      style="background-color: #def8f6; align-content: center"
+    >
       <form method="post" enctype="multipart/form-data">
-        
-        <div class="eyephoto w-50 p-3 " > 
-          <uploadImages @change="uploadImage()" :max="1"/>
+        <div class="eyephoto w-50 p-3">
+          <uploadImages @change="uploadImage" :max="1" />
         </div>
 
         <div class="mt-4 d-grid gap-5">
@@ -20,7 +22,7 @@
           </div>
 
           <!-- select -->
-          <select required class="form-select ">
+          <select required class="form-select">
             <option value="" disabled selected hidden>Eye side :</option>
             <option value="LEFT">LEFT</option>
             <option value="RIGHT">RIGHT</option>
@@ -28,7 +30,7 @@
 
           <!-- datepicker -->
           <div>
-            <Datepicker lang="en" position="right" class=""/>
+            <Datepicker lang="en" position="right" class="" />
           </div>
         </div>
         <!-- button -->
@@ -50,27 +52,30 @@
 import "vue-datepicker-ui/lib/vuedatepickerui.css";
 import VueDatepickerUi from "vue-datepicker-ui";
 import axios from "axios";
-import UploadImages from "vue-upload-drop-images"
+import UploadImages from "vue-upload-drop-images";
 
 export default {
   name: "Form",
-  components: { Datepicker: VueDatepickerUi, UploadImages,},
+  components: { Datepicker: VueDatepickerUi, UploadImages },
   setup() {
-    function uploadImage() {
+    function uploadImage(files) {
+      console.log(files.target.files[0]);
+      upload(files.target.files[0])
       if (typeof image === "string") {
         this.image = image;
       } else {
-        this.file = image.target.files[0];
+        // this.file = image.target.files[0];
       }
     }
 
-    function upload() {
+    function upload(files) {
+      console.log(files)
       let imageController = axios.create({
-        baseURL: "http://localhost:5000/api/",
+        baseURL: "http://localhost/api/",
       });
 
       let formData = new FormData();
-      formData.append("image", this.file);
+      formData.append("image", files);
       console.log("upload");
 
       return new Promise(async (resolve, reject) => {
@@ -93,17 +98,14 @@ export default {
       date: {},
       dateGreg: {},
       files: [],
+      images: {},
     };
   },
   methods: {},
 };
-
-
-
 </script>
 
 <style scoped lang="scss">
-
 .btn-default {
   background-color: #fbfbfb !important;
   color: #14bba6 !important;
@@ -131,5 +133,4 @@ option[value=""][disabled] {
 option {
   color: black;
 }
-
 </style>
