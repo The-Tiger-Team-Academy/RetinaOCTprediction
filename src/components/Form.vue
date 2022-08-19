@@ -1,59 +1,47 @@
-<template>
+<template >
   <body style="background-color: #def8f6">
-    <div class="container">
-      <div class="hello" style="padding-top: 20px"></div>
-
-      <div class="hello" style="background-color: #def8f6; padding-top: 20px">
-        <picture-input
-          ref="pictureInput"
-          width="700"
-          height="350"
-          margin="16"
-          accept="image/jpeg,image/png"
-          size="10"
-          button-class="btn"
-          :custom-strings="{
-            upload: '<h1>Bummer!</h1>',
-            drag: 'Drag & Drop',
-          }"
-          @change="onChange"
-        >
-        </picture-input>
-      </div>
-
-      <div class="mt-4 d-grid gap-5">
-        <!-- form -->
-        <div class="form">
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            placeholder="Name :"
-            name="name"
-            style="border-color: #fdfdfd"
-          />
+    <div class="container d-flex justify-content-center" style="background-color: #def8f6; align-content: center;">
+      <form method="post" enctype="multipart/form-data">
+        
+        <div class="eyephoto w-50 p-3 " > 
+          <uploadImages @change="uploadImage()" :max="1"/>
         </div>
 
-        <!-- select -->
-        <select required class="form-select">
-          <option value="" disabled selected hidden>Eye side :</option>
-          <option value="LEFT">LEFT</option>
-          <option value="RIGHT">RIGHT</option>
-        </select>
+        <div class="mt-4 d-grid gap-5">
+          <div class="form">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Name :"
+              name="name"
+              style="border-color: #fdfdfd"
+            />
+          </div>
 
-        <!-- datepicker -->
-        <div>
-          <Datepicker lang="en" position="right" />
+          <!-- select -->
+          <select required class="form-select ">
+            <option value="" disabled selected hidden>Eye side :</option>
+            <option value="LEFT">LEFT</option>
+            <option value="RIGHT">RIGHT</option>
+          </select>
+
+          <!-- datepicker -->
+          <div>
+            <Datepicker lang="en" position="right" class=""/>
+          </div>
         </div>
-      </div>
-      <!-- button -->
-      <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
-        <button type="button" class="btn btn-default" @click="clear">
-          CLEAR
-        </button>
+        <!-- button -->
+        <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
+          <button type="button" class="btn btn-default" @click="clear">
+            CLEAR
+          </button>
 
-        <button class="btn btn-primary" @click="upload">PREDICT</button>
-      </div>
+          <button class="btn btn-primary" type="submit" @click="upload">
+            PREDICT
+          </button>
+        </div>
+      </form>
     </div>
   </body>
 </template>
@@ -62,24 +50,32 @@
 import "vue-datepicker-ui/lib/vuedatepickerui.css";
 import VueDatepickerUi from "vue-datepicker-ui";
 import axios from "axios";
-import PictureInput from "vue-picture-input";
+import UploadImages from "vue-upload-drop-images"
 
 export default {
   name: "Form",
-  components: { Datepicker: VueDatepickerUi, PictureInput },
+  components: { Datepicker: VueDatepickerUi, UploadImages,},
   setup() {
-    function upload(image) {
+    function uploadImage() {
+      if (typeof image === "string") {
+        this.image = image;
+      } else {
+        this.file = image.target.files[0];
+      }
+    }
+
+    function upload() {
       let imageController = axios.create({
-        baseURL: "http://127.0.0.1/api/",
+        baseURL: "http://localhost:5000/api/",
       });
 
       let formData = new FormData();
-      formData.append("image", image);
+      formData.append("image", this.file);
       console.log("upload");
 
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post('uploads',formData);
+          const res = await imageController.post("uploads", formData);
           console.log(res);
           resolve(res);
         } catch (e) {
@@ -87,42 +83,26 @@ export default {
         }
       });
     }
-
-    function clear() {
-      localStorage.clear();
-    }
-
     return {
-      date: null,
       upload,
-      clear,
+      uploadImage,
     };
   },
   data() {
     return {
       date: {},
       dateGreg: {},
+      files: [],
     };
   },
-  methods: {
-    onChange(image) {
-      console.log("New picture selected!");
-      if (image) {
-        this.upload(image);
-        console.log("Picture loaded.");
-      } else {
-        console.log("FileReader API not supported: use the <form>, Luke!");
-      }
-    },
-  },
+  methods: {},
 };
+
+
+
 </script>
 
 <style scoped lang="scss">
-.container {
-  width: 50% !important;
-  height: 130vh;
-}
 
 .btn-default {
   background-color: #fbfbfb !important;
@@ -151,4 +131,5 @@ option[value=""][disabled] {
 option {
   color: black;
 }
+
 </style>
