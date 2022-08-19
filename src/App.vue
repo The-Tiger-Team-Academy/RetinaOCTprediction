@@ -11,13 +11,13 @@ export default {
 </script>
 
 <template>
-<div></div>
+<body class="" style="background-color:#def8f6">
   <Navbar></Navbar>
   <Form></Form>
+</body>
+  
 </template>
 
 <style lang="scss" scoped>
-template {
-  background-color: #def8f6;
-}
+
 </style>
