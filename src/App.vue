@@ -1,21 +1,16 @@
 <script >
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Form from "./components/Form.vue";
-import Navbar from "./components/Navbar.vue";
+import Form from "./components/Form.vue"
+import Navbar from "./components/Navbar.vue"
 
 export default {
   name: "Home",
-  components: { Navbar, Form, },
+  components: {Navbar, Form,}
+  
 };
 </script>
 
 <template>
-<body class="" style="background-color:#def8f6">
-  <Navbar></Navbar>
-  <Form></Form>
-</body>
-  
+  <router-view></router-view>
 </template>
 
 <style lang="scss" scoped>

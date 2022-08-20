@@ -1,5 +1,12 @@
-<template >
-  <body style="background-color: #def8f6">
+<template>
+<body>
+  <nav class="navbar fixed-top sticky-top" style="background-color: #BDEAE6;">
+        <div class="">
+            <a class="navbar-brand ps-4" href="#">
+                <img src="../assets/RETINA (2).png" alt="" height="50">
+            </a>
+        </div>
+    </nav>
     <div
       class="container justify-content-center"
       style="background-color: #def8f6; align-content: center"
@@ -38,71 +45,32 @@
           <button type="button" class="btn btn-default" @click="clear">
             CLEAR
           </button>
-          <router-link class="btn btn-primary" to="/About" tag="button" @click="upload">PREDICT</router-link>
+
+          <button class="btn btn-primary" type="submit" @click="upload">
+            PREDICT
+          </button>
         </div>
       </form>
     </div>
-  </body>
+    </body>
 </template>
 
 <script>
 import "vue-datepicker-ui/lib/vuedatepickerui.css";
 import VueDatepickerUi from "vue-datepicker-ui";
-import axios from "axios";
+//import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
-
 export default {
-  name: "Form",
+name: "Preview",
   components: { Datepicker: VueDatepickerUi, UploadImages },
-  setup() {
-    function uploadImage(files) {
-      console.log(files.target.files[0]);
-      upload(files.target.files[0])
-      if (typeof image === "string") {
-        this.image = image;
-      } else {
-        // this.file = image.target.files[0];
-      }
-    }
-
-    function upload(files) {
-      console.log(files)
-      let imageController = axios.create({
-        baseURL: "http://localhost/api/",
-      });
-
-      let formData = new FormData();
-      formData.append("image", files);
-      console.log("upload");
-
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await imageController.post("uploads", formData);
-          console.log(res);
-          resolve(res);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    }
-    return {
-      upload,
-      uploadImage,
-    };
-  },
-  data() {
-    return {
-      date: {},
-      dateGreg: {},
-      files: [],
-      images: {},
-    };
-  },
-  methods: {},
-};
+}
 </script>
 
-<style scoped lang="scss">
+<style>
+body {
+    background-color: #def8f6;
+}
+
 .btn-default {
   background-color: #fbfbfb !important;
   color: #14bba6 !important;
@@ -144,5 +112,4 @@ option {
 .container{
     width: 50%;
 }
-
 </style>

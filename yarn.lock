@@ -114,6 +114,11 @@
     "@vue/compiler-dom" "3.2.37"
     "@vue/shared" "3.2.37"
 
+"@vue/devtools-api@^6.1.4":
+  "integrity" "sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ=="
+  "resolved" "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.2.1.tgz"
+  "version" "6.2.1"
+
 "@vue/reactivity-transform@3.2.37":
   "integrity" "sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg=="
   "resolved" "https://registry.npmjs.org/@vue/reactivity-transform/-/reactivity-transform-3.2.37.tgz"
@@ -1058,6 +1063,13 @@
   "resolved" "https://registry.npmjs.org/vue-picture-input/-/vue-picture-input-2.4.0.tgz"
   "version" "2.4.0"
 
+"vue-router@^4.1.3":
+  "integrity" "sha512-XvK81bcYglKiayT7/vYAg/f36ExPC4t90R/HIpzrZ5x+17BOWptXLCrEPufGgZeuq68ww4ekSIMBZY1qdUdfjA=="
+  "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.1.3.tgz"
+  "version" "4.1.3"
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
+
 "vue-upload-drop-images@^1.0.7":
   "integrity" "sha512-O1G+iy0oTK9EaD6XHI5vjZQzdy+PeVCui7ty5Ja8ipw3bBWcY1o5+7JxofMZSXPQbr++Go0hWHtyb7xwQZOpQA=="
   "resolved" "https://registry.npmjs.org/vue-upload-drop-images/-/vue-upload-drop-images-1.0.7.tgz"
@@ -1071,7 +1083,7 @@
     "@vue/compiler-sfc" "2.7.8"
     "csstype" "^3.1.0"
 
-"vue@^3.2.1", "vue@^3.2.25", "vue@^3.2.37", "vue@>=3.2.0", "vue@3.2.37":
+"vue@^3.2.0", "vue@^3.2.1", "vue@^3.2.25", "vue@^3.2.37", "vue@>=3.2.0", "vue@3.2.37":
   "integrity" "sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.37.tgz"
   "version" "3.2.37"
