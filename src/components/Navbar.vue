@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top sticky-top" style="background-color: #BDEAE6;">
+  <nav class="navbar fixed-top sticky-top" style="background-color: #FFC65B;">
         <div class="">
             <a class="navbar-brand ps-4" href="#">
                 <img src="../assets/RETINA (2).png" alt="" height="50">

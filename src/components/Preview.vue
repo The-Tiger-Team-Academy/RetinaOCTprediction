@@ -1,6 +1,6 @@
 <template>
 <body>
-  <nav class="navbar fixed-top sticky-top" style="background-color: #BDEAE6;">
+  <nav class="navbar fixed-top sticky-top" style="background-color: #FFC65B;">
         <div class="">
             <a class="navbar-brand ps-4" href="#">
                 <img src="../assets/RETINA (2).png" alt="" height="50">
@@ -9,7 +9,7 @@
     </nav>
     <div
       class="container justify-content-center"
-      style="background-color: #def8f6; align-content: center"
+      style="background-color: #F5F5F5; align-content: center"
     >
       <form method="post" enctype="multipart/form-data">
         <div class="eyephoto w-50 p-3">
@@ -56,25 +56,30 @@
 </template>
 
 <script>
-import "vue-datepicker-ui/lib/vuedatepickerui.css";
-import VueDatepickerUi from "vue-datepicker-ui";
+import '@vuepic/vue-datepicker/dist/main.css'
+import Datepicker from '@vuepic/vue-datepicker';
 //import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
 export default {
 name: "Preview",
-  components: { Datepicker: VueDatepickerUi, UploadImages },
+  components: { Datepicker, UploadImages },
+  data() {
+            return {
+                date: null,
+            };
+        }
 }
 </script>
 
 <style>
 body {
-    background-color: #def8f6;
+    background-color: #F5F5F5;
 }
 
 .btn-default {
   background-color: #fbfbfb !important;
-  color: #14bba6 !important;
-  border-color: #14bba6 !important;
+  color: #6E6E6E !important;
+  border-color: #6E6E6E !important;
   border-width: 2px !important;
   border-radius: 15px !important;
   padding-left: 40px !important;
@@ -82,7 +87,7 @@ body {
 }
 
 .btn-primary {
-  background-color: #14bba6 !important;
+  background-color: #FF4400 !important;
   border: #14bba6 !important;
   border-radius: 15px !important;
   padding-left: 40px !important;

@@ -167,12 +167,12 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.37.tgz"
   "version" "3.2.37"
 
-"@vuepic/vue-datepicker@^3.4.1":
-  "integrity" "sha512-3iY6br4iIhFxkiJxeBEl+a6iEmVFx6CPLtfryU4QeQEREExVAHrFUih/WFJKdQzC74fqZyVFc5bOi/WvlMOn+Q=="
-  "resolved" "https://registry.npmjs.org/@vuepic/vue-datepicker/-/vue-datepicker-3.4.1.tgz"
-  "version" "3.4.1"
+"@vuepic/vue-datepicker@^3.4.6":
+  "integrity" "sha512-UHtQiHbx9dQSv8KXPQe/hk2bXoBJx6KTdGSNinCTFKjZWNN42B3aABvlsKQ5yHiHI1jm1JMOOSGfgAIF3NhRKg=="
+  "resolved" "https://registry.npmjs.org/@vuepic/vue-datepicker/-/vue-datepicker-3.4.6.tgz"
+  "version" "3.4.6"
   dependencies:
-    "date-fns" "^2.29.1"
+    "date-fns" "^2.29.2"
 
 "antd@^4.22.4":
   "integrity" "sha512-u7l68PhSJMxyZmCNw+jwaeurSAaE+bU+lB0SPRHLfOFJR6xRudntvRoQdiEFOD5FZ3eeqz4lYQ3RZZRIarmceg=="
@@ -326,10 +326,10 @@
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   "version" "3.1.0"
 
-"date-fns@^2.29.1", "date-fns@2.x":
-  "integrity" "sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw=="
-  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
-  "version" "2.29.1"
+"date-fns@^2.29.2", "date-fns@2.x":
+  "integrity" "sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.2.tgz"
+  "version" "2.29.2"
 
 "dayjs@1.x":
   "integrity" "sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g=="
