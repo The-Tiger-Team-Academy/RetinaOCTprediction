@@ -13,7 +13,7 @@
     >
       <form method="post" enctype="multipart/form-data">
         <div class="eyephoto w-50 p-3">
-          <uploadImages @change="uploadImage" :max="1" />
+          <uploadImages src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" @change="uploadImage" :max="1" />
         </div>
 
         <div class="mt-4 d-grid gap-5">
@@ -60,6 +60,8 @@ import "vue-datepicker-ui/lib/vuedatepickerui.css";
 import VueDatepickerUi from "vue-datepicker-ui";
 //import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
+
+
 export default {
 name: "Preview",
   components: { Datepicker: VueDatepickerUi, UploadImages },

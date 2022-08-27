@@ -38,11 +38,19 @@
           <button type="button" class="btn btn-default" @click="clear">
             CLEAR
           </button>
-          <router-link class="btn btn-primary" to="/About" tag="button" @click="upload">PREDICT</router-link>
+          <router-link
+            class="btn btn-primary"
+            to="/About"
+            tag="button"
+            @click="upload"
+            :uploadImage="upload"
+            >PREDICT</router-link
+          >
         </div>
       </form>
     </div>
   </body>
+  <input type="text" value="test" />
 </template>
 
 <script>
@@ -54,26 +62,29 @@ import UploadImages from "vue-upload-drop-images";
 export default {
   name: "Form",
   components: { Datepicker: VueDatepickerUi, UploadImages },
-  setup() {
-    function uploadImage(files) {
-      console.log(files.target.files[0]);
-      upload(files.target.files[0])
-      if (typeof image === "string") {
-        this.image = image;
-      } else {
-        // this.file = image.target.files[0];
-      }
-    }
 
-    function upload(files) {
-      console.log(files)
+  setup() {
+    return {};
+  },
+  data() {
+    return {
+      images: null,
+    };
+  },
+  methods: {
+    uploadImage(files) {
+      this.images = files.target.files[0];
+      console.log(this.images);
+      // console.log(files.target.files[0]);
+    },
+    upload() {
+      console.log(this.images);
       let imageController = axios.create({
         baseURL: "http://localhost/api/",
       });
 
       let formData = new FormData();
-      formData.append("image", files);
-      console.log("upload");
+      formData.append("image", this.images);
 
       return new Promise(async (resolve, reject) => {
         try {
@@ -84,21 +95,8 @@ export default {
           reject(e);
         }
       });
-    }
-    return {
-      upload,
-      uploadImage,
-    };
+    },
   },
-  data() {
-    return {
-      date: {},
-      dateGreg: {},
-      files: [],
-      images: {},
-    };
-  },
-  methods: {},
 };
 </script>
 
@@ -132,17 +130,16 @@ option {
 }
 
 .container[data-v-fd6e0c3d] {
-    width: 210%;
-    height: 250px;
-    background: #f7fafc;
-    border: 0.5px solid #a3a8b1;
-    border-radius: 10px;
-    padding: 30px;
-    position: relative;
+  width: 210%;
+  height: 250px;
+  background: #f7fafc;
+  border: 0.5px solid #a3a8b1;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
 }
 
-.container{
-    width: 50%;
+.container {
+  width: 50%;
 }
-
 </style>
