@@ -50,7 +50,6 @@
       </form>
     </div>
   </body>
-  <input type="text" value="test" />
 </template>
 
 <script>
