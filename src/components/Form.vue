@@ -86,17 +86,9 @@ export default {
       console.log(this.images);
     },
     upload() {
-      var full_name = document.getElementById("full_name").value;
-      var eyeside = document.getElementById("eyeside").value;
-      var datepicker = document.getElementById("datepicker").value;
-
-      localStorage.setItem("Full_name", full_name);
-      localStorage.setItem("Eyeside", eyeside);
-      localStorage.setItem("Date", this.date);
-
       console.log(this.images);
       let imageController = axios.create({
-        baseURL: "http://localhost/api/",
+        baseURL: "http://192.168.1.98:3000/api/app/upload/",
       });
 
       let formData = new FormData();
@@ -104,7 +96,7 @@ export default {
 
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post("uploads", formData);
+          const res = await imageController.post("image", formData);
           console.log(res);
           resolve(res);
         } catch (e) {

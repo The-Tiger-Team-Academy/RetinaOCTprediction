@@ -40,16 +40,6 @@
             <Datepicker lang="en" position="right" class="" v-model="picked" />
           </div>
         </div>
-        <!-- button -->
-        <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
-          <button type="button" class="btn btn-default" @click="clear">
-            CLEAR
-          </button>
-
-          <button class="btn btn-primary" type="submit" @click="upload">
-            PREDICT
-          </button>
-        </div>
       </form>
     </div>
     </body>
