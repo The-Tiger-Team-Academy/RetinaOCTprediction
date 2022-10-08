@@ -93,10 +93,10 @@ export default {
 
       let formData = new FormData();
       formData.append("image", this.images);
-
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post("image", formData);
+          const res = await imageController.post("upload",formData);
+          console.log(formData)
           console.log(res);
           resolve(res);
         } catch (e) {
