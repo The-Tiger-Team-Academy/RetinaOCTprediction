@@ -88,7 +88,7 @@ export default {
     upload() {
       console.log(this.images);
       let imageController = axios.create({
-        baseURL: "http://192.168.1.98:3000/api/app/upload/",
+        baseURL: "http://192.168.1.98:3000/api/app/",
       });
 
       let formData = new FormData();
