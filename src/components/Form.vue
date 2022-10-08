@@ -88,15 +88,15 @@ export default {
     upload() {
       console.log(this.images);
       let imageController = axios.create({
-        baseURL: "http://192.168.1.98:3000/api/app/upload/",
+        baseURL: "http://192.168.1.98:3000/api/app/",
       });
 
       let formData = new FormData();
       formData.append("image", this.images);
-
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post("image", formData);
+          const res = await imageController.post("upload",formData);
+          console.log(formData)
           console.log(res);
           resolve(res);
         } catch (e) {
