@@ -39,6 +39,9 @@
           <div>
             <Datepicker lang="en" position="right" class="" v-model="date" disabled/>
           </div>
+          <div>
+            <input type="text" class="form-control" disabled>
+          </div>
         </div>
       </form>
     </div>
