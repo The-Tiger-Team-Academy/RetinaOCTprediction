@@ -12,8 +12,8 @@
       style="background-color: #F5F5F5; align-content: center"
     >
       <form method="post" enctype="multipart/form-data">
-        <div class="eyephoto w-50 p-3">
-          <img class="eyephoto w-50 p-3" v-bind:src="image" >
+        <div class="eyephoto">
+          <img class="eyephoto w-100 p-3 center mw-100" v-bind:src="image" >
         </div>
 
         <div class="mt-4 d-grid gap-5">
@@ -26,10 +26,10 @@
               v-model="name"
               name="name"
               style="border-color: #fdfdfd"
-            />
+              disabled/>
           </div>
           <!-- select -->
-          <select v-model="eye_side" required class="form-select">
+          <select v-model="eye_side" required class="form-select" disabled>
             <option value="" disabled selected hidden>Eye side :</option>
             <option value="LEFT">LEFT</option>
             <option value="RIGHT">RIGHT</option>
@@ -37,7 +37,7 @@
 
           <!-- datepicker -->
           <div>
-            <Datepicker lang="en" position="right" class="" v-model="date" />
+            <Datepicker lang="en" position="right" class="" v-model="date" disabled/>
           </div>
         </div>
       </form>
