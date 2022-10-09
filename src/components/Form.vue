@@ -52,7 +52,6 @@
             tag="button"
             type="submit"
             @click="upload"
-            :uploadImage="upload"
             >PREDICT</router-link
           >
         </div>
@@ -66,6 +65,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import Datepicker from "@vuepic/vue-datepicker";
 import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
+
 
 export default {
   name: "Form",
@@ -86,6 +86,7 @@ export default {
     uploadImage(files) {
       this.images = files.target.files[0];
     },
+    
     upload() {
       let imageController = axios.create({
         baseURL: "http://localhost:3000/api/app/",
@@ -103,6 +104,7 @@ export default {
           reject(e);
         }
       });
+      
     },
     createPatients(){
        let patientsController = axios.create({
@@ -130,9 +132,23 @@ export default {
         }
       });
     },
- 
-  },
+    upload(){
+      this.$swal({
+        title: "Prediction!",
+        text: "Please wait",
+        imageUrl: "https://i.stack.imgur.com/kOnzy.gif",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        timer: 7000,
+        imageWidth: 60,
+        imageHeight: 60,
+      })
+    }
+  }
 };
+
+
+
 </script>
 
 <style scoped lang="scss">
