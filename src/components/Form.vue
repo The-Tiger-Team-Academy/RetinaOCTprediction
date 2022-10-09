@@ -84,7 +84,6 @@ export default {
   },
   methods: {
     uploadImage(files) {
-    
       this.images = files.target.files[0];
     },
     upload() {

@@ -40,12 +40,13 @@
             <Datepicker lang="en" position="right" class="" v-model="date" disabled/>
           </div>
           <div>
-            <input type="text" class="form-control" disabled>
+            <input type="text" class="form-control" v-model="prediction" disabled>
           </div>
         </div>
       </form>
     </div>
     </body>
+
     <button v-on:click="getPatients">GETDATA</button>
     
 </template>
@@ -66,6 +67,7 @@ name: "Preview",
                 image:null,
                 eye_side:null,
                 date: null,
+                prediction: null
                
             };
         },
@@ -83,7 +85,7 @@ name: "Preview",
           this.date=res.data[0].date
           this.name=res.data[0].name
           this.eye_side=res.data[0].eye_side
-
+          this.prediction = res.data[0].prediction
           resolves(res.data)
       }catch(e){
         reject(e.response.data)
