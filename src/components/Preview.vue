@@ -70,6 +70,7 @@ import UploadImages from "vue-upload-drop-images";
 export default {
 name: "Preview",
   components: { Datepicker, UploadImages },
+ 
   setup(){
       
     return {}
