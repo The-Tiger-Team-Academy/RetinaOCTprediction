@@ -66,7 +66,6 @@ import Datepicker from "@vuepic/vue-datepicker";
 import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
 
-
 export default {
   name: "Form",
   components: { Datepicker, UploadImages },
@@ -78,7 +77,7 @@ export default {
     return {
       name: null,
       images: null,
-      eye_side:null,
+      eye_side: null,
       date: new Date(),
     };
   },
@@ -86,7 +85,7 @@ export default {
     uploadImage(files) {
       this.images = files.target.files[0];
     },
-    
+
     upload() {
       let imageController = axios.create({
         baseURL: "http://localhost:3000/api/app/",
@@ -94,45 +93,7 @@ export default {
       let uploadImage = new FormData();
       uploadImage.append("image", this.images);
       this.createPatients();
-
-
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await imageController.post("upload",uploadImage);
-          resolve(res);
-        } catch (e) {
-          reject(e);
-        }
-      });
       
-    },
-    createPatients(){
-       let patientsController = axios.create({
-        baseURL: "http://localhost:3000/api",
-      });
-      let createPatients = new FormData();
-      createPatients.append("patients_id","1")
-      createPatients.append("name",this.name)
-      createPatients.append("eye_side",this.eye_side)
-      createPatients.append("date",this.date)
-      createPatients.append("upload",this.images.name)
-    
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await patientsController.post('patients',{
-            patients_id: "1",
-            name: this.name,
-            eye_side: this.eye_side,
-            date: this.date,
-            path: this.images.name
-          });
-         resolve(res);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    },
-    upload(){
       this.$swal({
         title: "Prediction!",
         text: "Please wait",
@@ -143,12 +104,45 @@ export default {
         imageWidth: 60,
         imageHeight: 60,
       })
-    }
-  }
+
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await imageController.post("upload", uploadImage);
+          resolve(res);
+        } catch (e) {
+          reject(e);
+        }
+      });
+      
+    },
+    createPatients() {
+      let patientsController = axios.create({
+        baseURL: "http://localhost:3000/api",
+      });
+      let createPatients = new FormData();
+      createPatients.append("patients_id", "1");
+      createPatients.append("name", this.name);
+      createPatients.append("eye_side", this.eye_side);
+      createPatients.append("date", this.date);
+      createPatients.append("upload", this.images.name);
+
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await patientsController.post("patients", {
+            patients_id: "1",
+            name: this.name,
+            eye_side: this.eye_side,
+            date: this.date,
+            path: this.images.name,
+          });
+          resolve(res);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    },
+  },
 };
-
-
-
 </script>
 
 <style scoped lang="scss">
