@@ -43,11 +43,20 @@
             <input type="text" class="form-control" v-model="prediction" disabled>
           </div>
         </div>
+        <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
+          <router-link
+            class="btn btn-primary"
+            to="/"
+            tag="button"
+            >CLEAR</router-link
+          >
+    </div>
       </form>
     </div>
     </body>
 
     <button v-on:click="getPatients">GETDATA</button>
+
     
 </template>
 
