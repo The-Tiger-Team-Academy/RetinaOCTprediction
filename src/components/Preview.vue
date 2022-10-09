@@ -12,8 +12,8 @@
       style="background-color: #F5F5F5; align-content: center"
     >
       <form method="post" enctype="multipart/form-data">
-        <div class="eyephoto">
-          <img class="eyephoto w-100 p-3 center mw-100" v-bind:src="image" >
+        <div class="eyephoto text-center">
+          <img class="eyephoto w-50 p-3" v-bind:src="image" >
         </div>
 
         <div class="mt-4 d-grid gap-5">
