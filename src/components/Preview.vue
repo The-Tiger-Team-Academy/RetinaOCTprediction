@@ -13,7 +13,7 @@
     >
       <form method="post" enctype="multipart/form-data">
         <div class="eyephoto w-50 p-3">
-          <uploadImages src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" @change="uploadImage" :max="1" />
+          <img class="eyephoto w-50 p-3" v-bind:src="image" >
         </div>
 
         <div class="mt-4 d-grid gap-5">
@@ -23,13 +23,13 @@
               class="form-control"
               id="name"
               placeholder="Name :"
+              v-model="name"
               name="name"
               style="border-color: #fdfdfd"
             />
           </div>
-
           <!-- select -->
-          <select required class="form-select">
+          <select v-model="eye_side" required class="form-select">
             <option value="" disabled selected hidden>Eye side :</option>
             <option value="LEFT">LEFT</option>
             <option value="RIGHT">RIGHT</option>
@@ -37,18 +37,20 @@
 
           <!-- datepicker -->
           <div>
-            <Datepicker lang="en" position="right" class="" v-model="picked" />
+            <Datepicker lang="en" position="right" class="" v-model="date" />
           </div>
         </div>
       </form>
     </div>
     </body>
+    <button v-on:click="getPatients">GETDATA</button>
+    
 </template>
 
 <script>
 import '@vuepic/vue-datepicker/dist/main.css'
 import Datepicker from '@vuepic/vue-datepicker';
-//import axios from "axios";
+import axios from "axios";
 import UploadImages from "vue-upload-drop-images";
 
 
@@ -57,10 +59,37 @@ name: "Preview",
   components: { Datepicker, UploadImages },
   data() {
             return {
+                name: null,
+                image:null,
+                eye_side:null,
                 date: null,
-                picked: new Date(),
+               
             };
-        }
+        },
+  methods: {
+    getPatients(){
+      console.log("getPatients")
+      let patientsController = axios.create({
+        baseURL: "http://localhost:3000/api/patients/",
+      });
+     
+     return new Promise(async (resolves,reject) =>{
+      try{
+          const res = await patientsController.get()
+          this.image = "http://localhost:3000/api/app/"+res.data[0].path
+          this.date=res.data[0].date
+          this.name=res.data[0].name
+          this.eye_side=res.data[0].eye_side
+
+          resolves(res.data)
+      }catch(e){
+        reject(e.response.data)
+      }
+     })
+    },
+    
+    
+  }
 }
 </script>
 
