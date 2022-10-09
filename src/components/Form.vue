@@ -17,13 +17,14 @@
               id="full_name"
               placeholder="Name :"
               name="name"
+              v-model="name"
               style="border-color: #fdfdfd"
               required
             />
           </div>
 
           <!-- select -->
-          <select required class="form-select" id="eyeside">
+          <select required class="form-select" id="eyeside" v-model="eye_side">
             <option value="" disabled selected hidden>Eye side :</option>
             <option value="LEFT">LEFT</option>
             <option value="RIGHT">RIGHT</option>
@@ -75,35 +76,62 @@ export default {
   },
   data() {
     return {
+      name: null,
       images: null,
+      eye_side:null,
       date: new Date(),
     };
   },
   methods: {
     uploadImage(files) {
-      console.log(this.date);
+    
       this.images = files.target.files[0];
-      console.log(this.images);
     },
     upload() {
-      console.log(this.images);
       let imageController = axios.create({
         baseURL: "http://192.168.1.98:3000/api/app/",
       });
+      let uploadImage = new FormData();
+      uploadImage.append("image", this.images);
+      this.createPatients();
 
-      let formData = new FormData();
-      formData.append("image", this.images);
+
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await imageController.post("upload",formData);
-          console.log(formData)
-          console.log(res);
+          const res = await imageController.post("upload",uploadImage);
           resolve(res);
         } catch (e) {
           reject(e);
         }
       });
     },
+    createPatients(){
+       let patientsController = axios.create({
+        baseURL: "http://192.168.1.98:3000/api",
+      });
+      let createPatients = new FormData();
+      createPatients.append("patients_id","1")
+      createPatients.append("name",this.name)
+      createPatients.append("eye_side",this.eye_side)
+      createPatients.append("date",this.date)
+      createPatients.append("upload",this.images.name)
+    
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await patientsController.post('patients',{
+            patients_id: "1",
+            name: this.name,
+            eye_side: this.eye_side,
+            date: this.date,
+            path: this.images.name
+          });
+         resolve(res);
+        } catch (e) {
+          reject(e);
+        }
+      });
+    },
+ 
   },
 };
 </script>
