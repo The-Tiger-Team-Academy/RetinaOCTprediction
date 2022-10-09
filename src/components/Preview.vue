@@ -57,7 +57,6 @@
 
     <button v-on:click="getPatients">GETDATA</button>
 
-    
 </template>
 
 <script>
