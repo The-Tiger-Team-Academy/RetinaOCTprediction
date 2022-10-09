@@ -89,7 +89,7 @@ export default {
     },
     upload() {
       let imageController = axios.create({
-        baseURL: "http://192.168.1.98:3000/api/app/",
+        baseURL: "http://localhost:3000/api/app/",
       });
       let uploadImage = new FormData();
       uploadImage.append("image", this.images);
@@ -107,7 +107,7 @@ export default {
     },
     createPatients(){
        let patientsController = axios.create({
-        baseURL: "http://192.168.1.98:3000/api",
+        baseURL: "http://localhost:3000/api",
       });
       let createPatients = new FormData();
       createPatients.append("patients_id","1")
