@@ -44,12 +44,19 @@
           </div>
         </div>
         <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-5">
-          <router-link
+          <button class="btn btn-primary" @click="clear">
+              CLEAR
+          </button>
+          
+          
+          
+          
+          <!-- <router-link
             class="btn btn-primary"
             to="/"
             tag="button"
             >CLEAR</router-link
-          >
+          > -->
     </div>
       </form>
     </div>
@@ -101,6 +108,9 @@ name: "Preview",
      })
     },
     
+    clear() {
+      this.$router.push('/');
+    }
     
   }
 }
