@@ -103,6 +103,7 @@ export default {
       uploadImage.append("image", this.images);
       this.createPatients();
       
+
       this.$swal({
         title: "Prediction!",
         text: "Please wait",
@@ -115,6 +116,7 @@ export default {
         }).then (() => {
             this.$router.push('/about')
         });
+
 
 
       return new Promise(async (resolve, reject) => {
