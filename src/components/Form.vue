@@ -46,14 +46,23 @@
           <button type="button" class="btn btn-default" @click="clear">
             CLEAR
           </button>
-          <router-link
+          <button type="button" class="btn btn-primary" @click="upload">
+            PREDICT
+          </button>
+          
+          
+          
+          
+          
+          
+          <!-- <router-link
             class="btn btn-primary"
             to="/About"
             tag="button"
             type="submit"
             @click="upload"
             >PREDICT</router-link
-          >
+          > -->
         </div>
       </form>
     </div>
@@ -94,16 +103,21 @@ export default {
       uploadImage.append("image", this.images);
       this.createPatients();
       
-      // this.$swal({
-      //   title: "Prediction!",
-      //   text: "Please wait",
-      //   imageUrl: "https://i.stack.imgur.com/kOnzy.gif",
-      //   showConfirmButton: false,
-      //   allowOutsideClick: false,
-      //   timer: 10000,
-      //   imageWidth: 60,
-      //   imageHeight: 60,
-      // })
+
+      this.$swal({
+        title: "Prediction!",
+        text: "Please wait",
+        imageUrl: "https://i.stack.imgur.com/kOnzy.gif",
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        timer: 7000,
+        imageWidth: 60,
+        imageHeight: 60,
+        }).then (() => {
+            this.$router.push('/about')
+        });
+
+
 
       return new Promise(async (resolve, reject) => {
         try {

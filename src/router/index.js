@@ -3,8 +3,12 @@ import About from "../views/About.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/about", component: About },
+  { path: "/", 
+    name: "Home",  
+    component: Home },
+  { path: "/about", 
+    name: "about",
+    component: About },
 ];
 
 const router = createRouter({
