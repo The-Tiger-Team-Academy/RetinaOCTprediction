@@ -100,13 +100,13 @@ export default {
     getPatients() {
       console.log("getPatients");
       let patientsController = axios.create({
-        baseURL: "http://localhost:3000/api/patients/",
+        baseURL: "https://9d6663f31cdf.ap.ngrok.io/api/patients/",
       });
 
       return new Promise(async (resolves, reject) => {
         try {
           const res = await patientsController.get();
-          this.image = "http://localhost:3000/api/app/" + res.data[0].path;
+          this.image = "https://9d6663f31cdf.ap.ngrok.io/api/app/" + res.data[0].path;
           this.date = res.data[0].date;
           this.name = res.data[0].name;
           this.eye_side = res.data[0].eye_side;
